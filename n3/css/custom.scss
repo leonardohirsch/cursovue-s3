@@ -1,0 +1,93 @@
+$primary: #ff4000;
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+/*Button y links custom*/
+.btn.btn-outline-primary{
+    border:none;
+
+    &:hover{
+        color:$white;
+    }
+
+}
+.btn.btn-primary:hover{
+    color:$primary;
+    background-color: $white;
+}
+
+
+/*Nav princial custom*/
+.dropdown-menu{
+    border-color: $primary;
+}
+
+.dropdown-item:hover{
+    background-color: $primary;
+    color: $white;
+}
+.nav-link:hover{
+    color: $primary;
+}
+
+/*Hamburguesa icono*/
+button.navbar-toggler{
+    border: none;
+    &:focus{
+        color: white;
+    }
+}
+
+button[aria-expanded="true"] { 
+
+    &  > .navbar-toggler-icon-line{
+        &:nth-of-type(1) {
+            background: $primary;
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        &:nth-of-type(2) {
+            background: $primary;
+            opacity: 0;
+        }
+        &:nth-of-type(3) {
+            background: $primary;
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+    
+    }
+}
+
+.navbar-toggler-icon-line {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px 0 5px 0;
+    background: $primary;
+}
+
+/*Header*/
+header{
+    background-image: url("../imgs/header-bg-mobile.jpg");
+    background-size:cover;
+    @media only screen and (min-width: 576px) {
+    background-image: url("../imgs/header-bg.jpg");
+    }
+    
+    background-position: center center;
+}
+
+/*Section custom*/
+.section-container{
+    border-color: $primary;
+}
+
+/*Cards custom*/
+.card>img{
+    opacity: 0.8;
+}
+.card:hover{
+    & >img{
+        opacity: 1;
+    }
+    color:$primary
+}

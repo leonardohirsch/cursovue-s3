@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso Vue - Sprint 3 - Nivel 3</title>
+    <script src="https://kit.fontawesome.com/4a297373d0.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="css/custom-min.css">
+</head>
+<body>
+    <nav class="container-fluid navbar navbar-expand-md bg-white py-3 py-md-0 mb-md-3">
+        <div class="container d-flex flex-sm-row justify-content-center">
+            <img src="imgs/logo.png" alt="Shopping Online Logo" id="nav-logo" width="200px">
+            <div class="d-flex flex-row order-md-last align-items-center">
+                <button class="navbar-toggler collapse-mb order-last" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon-line"></span>
+                    <span class="navbar-toggler-icon-line"></span>
+                    <span class="navbar-toggler-icon-line"></span>
+                  </button>
+                  
+                  <a data-bs-toggle="collapse" href="#searchDiv" role="button" aria-expanded="false" aria-controls="searchDiv" class="btn btn-outline-primary"><i class="fa-solid fa-magnifying-glass me-3"></i></a>
+
+                <ul class="navbar-nav me-3 me-md-0 d-flex flex-row align-items-center">
+                    
+                    <li class="nav-item py-md-3">						 
+                        <a href="javascript:void(0)" class="btn btn-outline-primary flex-center" type="button" data-bs-toggle="modal" data-bs-target="#cartModal" onclick="applyPromotionsCart();calculateTotalWithDiscount(); printCart();open_modal();" data-bs-auto-close="outside">
+                           <i class="fas fa-shopping-cart me-1"></i> <span class="badge bg-primary text-white ms-1 rounded-pill" id="count_product"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="navbar" class="navbar-collapse collapse align-self-center align-self-md-end align-self-lg-center">
+
+                <ul class="navbar-nav me-auto mb-4 mb-lg-0 ms-lg-5">
+                    <li class="nav-item text-center">
+                     <a class="nav-link" href="#"><i class="fas fa-shopping-basket"></i> About us</a>
+                   </li>
+                   <li class="nav-item dropdown text-center">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Our products
+                    </a>
+                    <ul class="dropdown-menu w-50 mx-auto">
+                      <li class="text-center text-md-start"><a class="dropdown-item" href="#grocery">Grocery</a></li>
+                      <li class="text-center text-md-start"><a class="dropdown-item" href="#beauty">Beauty</a></li>
+                      <li class="text-center text-md-start"><a class="dropdown-item" href="#clothes">Clothes</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item text-center">
+                    <a class="nav-link" href="#"><i class="fas fa-heart"></i> Contact us</a>
+                  </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- Header-->
+    <header class="bg-dark py-5">
+        <div class="py-5 my-5 w-50 mx-auto">
+            <div class="collapse" id="searchDiv"><input type="search" placeholder="Search product" class="form-control border border-2 border-primary"></div>
+        </div>
+    </header>
+
+    <!-- Section-->
+		<section class="pt-5" id="grocery">
+			<h2 class="text-center text-primary"><i class="fas fa-shopping-basket pe-3"></i>Grocery</h2>
+			<div class="container py-5 px-5 px-md-5 mt-1">
+				<div class="row gx-3 gx-sm-5 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-center">
+					<div class="col mb-5 mb-md-5">
+						<div class="card px-5 py-3 h-100 border border-primary rounded">
+							<img class="rounded-circle" src="./imgs/cooking-oil.jpg" alt="..." />
+							<div class="card-body p-4">
+								<div class="text-center">
+									<h5 class="fw-bolder">Cooking Oil</h5>
+									$10.5
+								</div>
+							</div>
+							<div class="d-flex mx-auto card-footer p-4 pt-0 border-top-0 bg-transparent">
+								<div class="text-center me-2"><button type="button" onclick="addToCart(1)" class="btn btn-outline-primary"><i class="fa-solid fa-plus"></i></button>
+                                </div>
+                                <div class="text-primary mx-1 px-2 border border-2 border-primary rounded align-self-center d-none count_product_div" id="count_product_1"></div>
+								<div class="text-center ms-2"><button type="button" onclick="removeFromCart(1)" class="btn btn-outline-primary"><i class="fa-solid fa-minus"></i></button></div>
+							</div>
+                            <div class="text-center bg-primary text-white p-2">
+                                <h6 class="fw-bolder"><i class="fa-solid fa-fire me-2"></i>20% descuento con 3 o más unidades!</h6>
+                            </div>
+						</div>
+					</div>
+					<div class="col mb-5 mb-md-5">
+						<div class="card px-5 py-3 h-100 border border-primary rounded">
+							<img class="rounded-circle" src="./imgs/pasta.jpeg" alt="..." />
+							<div class="card-body p-4">
+								<div class="text-center">
+									<h5 class="fw-bolder">Pasta</h5>
+									$6.25
+								</div>
+							</div>
+							<div class="d-flex mx-auto card-footer p-4 pt-0 border-top-0 bg-transparent">
+								<div class="text-center me-2"><button type="button" onclick="addToCart(2)" class="btn btn-outline-primary"><i class="fa-solid fa-plus"></i></button></div>
+                                <div class="text-primary mx-1 px-2 border border-2 border-primary rounded align-self-center d-none count_product_div" id="count_product_2"></div>
+								<div class="text-center ms-2"><button type="button" onclick="removeFromCart(2)" class="btn btn-outline-primary"><i class="fa-solid fa-minus"></i></button></div>
+							</div>
+						</div>
+					</div>
+					<div class="col mb-5 mb-md-5">
+						<div class="card px-5 py-3 h-100 border border-primary rounded">
+							<img class="rounded-circle" src="./imgs/cupcake.webp" alt="..." />
+							<div class="card-body p-4">
+								<div class="text-center">
+									<h5 class="fw-bolder">Instant cupcake mixture</h5>
+									$5
+								</div>
+							</div>
+							<div class="d-flex mx-auto card-footer p-4 pt-0 border-top-0 bg-transparent">
+								<div class="text-center me-2"><button type="button" onclick="addToCart(3)" class="btn btn-outline-primary"><i class="fa-solid fa-plus"></i></button></div>
+                                <div class="text-primary mx-1 px-2 border border-2 border-primary rounded align-self-center d-none count_product_div" id="count_product_3"></div>
+								<div class="text-center ms-2"><button type="button" onclick="removeFromCart(3)" class="btn btn-outline-primary"><i class="fa-solid fa-minus"></i></button></div>
+							</div>
+                            <div class="text-center bg-primary text-white p-2">
+                                <h6 class="fw-bolder"><i class="fa-solid fa-fire me-2"></i>30% descuento con 10 o más unidades!</h6>
+                            </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="pt-5 bg-primary" id="beauty">
+			 <h2 class="text-center text-white"><i class="fas fa-heart pe-3"></i>Beauty</h2>
+			<div class="container py-5 px-5 px-md-5 mt-1">
+				<div class="row gx-3 gx-sm-5 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-center">
+					<div class="col mb-5">
+						<div class="card px-5 py-3 h-100 border border-dark rounded">
+							<img class="rounded-circle" src="./imgs/all-one.jpg" alt="..." />
+							<div class="card-body p-4">
+								<div class="text-center">
+									<h5 class="fw-bolder">All-in-1</h5>
+									$260
+								</div>
+							</div>
+							<div class="d-flex mx-auto card-footer p-4 pt-0 border-top-0 bg-transparent">
+								<div class="text-center me-2"><button type="button" onclick="addToCart(4)" class="btn btn-outline-primary"><i class="fa-solid fa-plus"></i></button></div>
+                                <div class="text-primary mx-1 px-2 border border-2 border-primary rounded align-self-center d-none count_product_div" id="count_product_4"></div>
+								<div class="text-center ms-2"><button type="button" onclick="removeFromCart(4)" class="btn btn-outline-primary"><i class="fa-solid fa-minus"></i></button></div>
+							</div>
+						</div>
+					</div>
+					<div class="col mb-5">
+						<div class="card px-5 py-3 h-100 border border-dark rounded">
+							<img class="rounded-circle" src="./imgs/zero.webp" alt="..." />
+							<div class="card-body p-4">
+								<div class="text-center">
+									<h5 class="fw-bolder">Zero makeup kit</h5>
+									$20.5
+								</div>
+							</div>
+							<div class="d-flex mx-auto card-footer p-4 pt-0 border-top-0 bg-transparent">
+								<div class="text-center me-2"><button type="button" onclick="addToCart(5)" class="btn btn-outline-primary"><i class="fa-solid fa-plus"></i></button></div>
+                                <div class="text-primary mx-1 px-2 border border-2 border-primary rounded align-self-center d-none count_product_div" id="count_product_5"></div>
+								<div class="text-center ms-2"><button type="button" onclick="removeFromCart(5)" class="btn btn-outline-primary"><i class="fa-solid fa-minus"></i></button></div>
+							</div>
+						</div>
+					</div>
+					<div class="col mb-5">
+						<div class="card px-5 py-3 h-100 border border-dark rounded">
+							<img class="rounded-circle" src="./imgs/pinta-labios.jpg" alt="..." />
+							<div class="card-body p-4">
+								<div class="text-center">
+									<h5 class="fw-bolder">Lip tints</h5>
+									$12.75
+								</div>
+							</div>
+							<div class="d-flex mx-auto card-footer p-4 pt-0 border-top-0 bg-transparent">
+								<div class="text-center me-2"><button type="button" onclick="addToCart(6)" class="btn btn-outline-primary"><i class="fa-solid fa-plus"></i></button></div>
+                                <div class="text-primary mx-1 px-2 border border-2 border-primary rounded align-self-center d-none count_product_div" id="count_product_6"></div>
+								<div class="text-center ms-2"><button type="button" onclick="removeFromCart(6)" class="btn btn-outline-primary"><i class="fa-solid fa-minus"></i></button></div>
+							</div>
+						</div>
+					</div>
+	   
+				</div>
+			</div>
+		</section>
+		<section class="pt-5" id="clothes">
+			 <h2 class="text-center text-primary"><i class="fas fa-tshirt pe-3"></i>Clothes</h2>
+			<div class="container py-5 px-5 px-md-5 mt-1">
+				<div class="row gx-3 gx-sm-5 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-center">
+					<div class="col mb-5">
+						<div class="card px-5 py-3 h-100 border border-primary rounded">
+							<img class="rounded-circle" src="./imgs/lawn.webp" alt="..." />
+							<div class="card-body p-4">
+								<div class="text-center">
+									<h5 class="fw-bolder">Lawn dress</h5>
+									$15
+								</div>
+							</div>
+							<div class="d-flex mx-auto card-footer p-4 pt-0 border-top-0 bg-transparent">
+								<div class="text-center me-2"><button type="button" onclick="addToCart(7)" class="btn btn-outline-primary"><i class="fa-solid fa-plus"></i></button></div>
+                                <div class="text-primary mx-1 px-2 border border-2 border-primary rounded align-self-center d-none count_product_div" id="count_product_7"></div>
+								<div class="text-center ms-2"><button type="button" onclick="removeFromCart(7)" class="btn btn-outline-primary"><i class="fa-solid fa-minus"></i></button></div>
+							</div>
+						</div>
+					</div>
+					<div class="col mb-5">
+						<div class="card px-5 py-3 h-100 border border-primary rounded">
+							<img class="rounded-circle" src="./imgs/chiffon.jpg" alt="..." />
+							<div class="card-body p-4">
+								<div class="text-center">
+									<h5 class="fw-bolder">Lawn-chiffon combo</h5>
+									$19.99
+								</div>
+							</div>
+							<div class="d-flex mx-auto card-footer p-4 pt-0 border-top-0 bg-transparent">
+								<div class="text-center me-2"><button type="button" onclick="addToCart(8)" class="btn btn-outline-primary"><i class="fa-solid fa-plus"></i></button></div>
+                                <div class="text-primary mx-1 px-2 border border-2 border-primary rounded align-self-center d-none count_product_div" id="count_product_8"></div>
+								<div class="text-center ms-2"><button type="button" onclick="removeFromCart(8)" class="btn btn-outline-primary"><i class="fa-solid fa-minus"></i></button></div>
+							</div>
+						</div>
+					</div>
+					<div class="col mb-5">
+						<div class="card px-5 py-3 h-100 border border-primary rounded">
+							<img class="rounded-circle" src="./imgs/toddler.jpg" alt="..." />
+							<div class="card-body p-4">
+								<div class="text-center">
+									<h5 class="fw-bolder">Toddler Frock</h5>
+									$9.99
+								</div>
+							</div>
+							<div class="d-flex mx-auto card-footer p-4 pt-0 border-top-0 bg-transparent">
+								<div class="text-center me-2"><button type="button" onclick="addToCart(9)" class="btn btn-outline-primary"><i class="fa-solid fa-plus"></i></button></div>
+                                <div class="text-primary mx-1 px-2 border border-2 border-primary rounded align-self-center d-none count_product_div" id="count_product_9"></div>
+								<div class="text-center ms-2"><button type="button" onclick="removeFromCart(9)" class="btn btn-outline-primary"><i class="fa-solid fa-minus"></i></button></div>
+							</div>
+						</div>
+					</div>
+	   
+				</div>
+			</div>
+		</section>
+	
+        <!-- Footer-->
+        <footer class="py-3 bg-primary">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
+        </footer>
+		
+		<div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title text-primary" id="exampleModalLabel"><i class="fas fa-cart-arrow-down"></i> My Cart</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			  </div>
+			  <div class="modal-body">
+				  <h3 class="text-primary text-center bill px-5">Shopping Cart</h3>
+				  <table class="table">
+					<thead>
+						<tr>
+						  <th scope="col">Product</th>
+						  <th scope="col">Price</th>
+						  <th scope="col">Qty.</th>
+                          <th scope="col"></th>
+						  <th scope="col">Total</th>
+                          <th scope="col"></th>
+						</tr>
+					  </thead>
+					  <tbody id="cart_list">
+					  </tbody>
+				  </table>
+				  <div class="text-center fs-3">
+					Total: $<span id="total_price"></span>
+				  </div>
+				  <div class="text-center d-none" id="cart_modal_btns_div"> 
+					<a href="checkout.html" class="btn btn-outline-primary m-3">Checkout</a>
+					<a href="javascript:void(0)" onclick="cleanCart()" class="btn btn-outline-primary m-3">Clean Cart</a>
+				  </div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/shop.js"></script>
+</body>
+</html>
